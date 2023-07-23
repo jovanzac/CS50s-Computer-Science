@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: When the sorted files are passed code dosen't take much time but when the random or reversed files are passed, code takes much longer which all points towards bubble sort.
+
+sort2 uses: Merge Sort
+
+How do you know?: the average time taken for all - reversed, random and sorted - files are around the same value which makes me inclined to believe that sort2 uses merge sort
+
+sort3 uses: Selection Sort
+
+How do you know?: The fact that all three types of files - reversed, random and sorted - takes more time in the case of sort3 when compared with sort1 and sort2 indicates the usage of selection sort 

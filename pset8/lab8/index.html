@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            // JS code for Part1: MCQ section
+            // Listen for document to be fully loaded
+            document.addEventListener('DOMContentLoaded', function(){
+                // Button belonging to the .correct class will be the right one. Load that button into a variable
+                let correctBtn = document.querySelector('.correct');
+                // Listen for a click and change bg to green and display correct when even occurs
+                correctBtn.addEventListener('click', function() {
+                    correctBtn.style.backgroundColor = 'green';
+                    document.querySelector('#MCQresult').innerHTML = 'Correct!';
+                });
+                // Buttons belonging to the .incorrect class will be the incorrect buttons. Load these buttons into an array
+                let incorrectBtns = document.querySelectorAll('.incorrect');
+                for (let i = 0; i < incorrectBtns.length; i++)
+                {
+                    // For each of the incorrect buttons, listen for a click and when the event occurs, change bg to red and display incorrect beneath
+                    incorrectBtns[i].addEventListener('click', function() {
+                        incorrectBtns[i].style.backgroundColor = 'red';
+                        document.querySelector('#MCQresult').innerHTML = 'Incorrect!';
+                    });
+                }
+
+                // The JS code for Part2: Free Response section
+                //
+                document.querySelector('#submitbox').addEventListener('click', function() {
+                    console.log('here inside submit');
+                    let textBox =  document.querySelector('input');
+                    console.log(textBox.value);
+                    if (textBox.value.toLowerCase() === 'delhi')
+                    {
+                        textBox.style.backgroundColor = 'green';
+                        document.querySelector('#FRresult').innerHTML = 'Correct!';
+                    }
+                    else
+                    {
+                        textBox.style.backgroundColor = 'red';
+                        document.querySelector('#FRresult').innerHTML = 'Incorrect!';
+                    }
+                });
+            });
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>What is the Latin word for “beyond”, often used as a prefix to signify an extreme?</h3>
+
+                <button class="incorrect">Extra</button>
+                <button class="incorrect">Super</button>
+                <button class="correct">Ultra</button>
+                <button class="incorrect">Mega</button>
+
+                <p id="MCQresult"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <h3>What is the capital of India?</h3>
+                <input name="textbox" type="text" autocomplete="off">
+                <button id="submitbox">Check Answer</button>
+
+                <p id="FRresult"></p>
+
+            </div>
+
+        </div>
+    </body>
+</html>

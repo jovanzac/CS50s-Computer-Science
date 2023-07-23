@@ -1,0 +1,7 @@
+tensorflow
+tkinter
+tkthemes
+json
+nltk
+speech_recognition
+pyttsx3

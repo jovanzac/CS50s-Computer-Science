@@ -1,0 +1,56 @@
+.links_list
+{
+    float: right;
+    list-style-type: none;
+    margin-top:25px;
+}
+
+ul li
+{
+    display: inline-block;
+    padding-top: 20px;
+}
+
+.links
+{
+    font-family: "Helvetica", "Verdana", "Arial";
+    text-decoration: none;
+    color: white;
+    padding: 10px 25px;
+    border: 1px solid white;
+}
+
+.links:hover
+{
+    text-decoration: none;
+    background-color: white;
+    color: #171717;
+    transition: 0.3s ease;
+}
+
+.active
+{
+    text-decoration: none;
+    background-color: white;
+    color: #171717;
+}
+
+body
+{
+    background-color: #171717;
+}
+
+.links_header
+{
+    border-bottom: 2px solid white;
+    overflow: hidden;
+}
+
+#name_header
+{
+    color: white;
+    margin-top: 30px;
+    margin-left: 50px;
+    font-family: "Lucida Console", "Monaco";
+    font-size: 30px;
+}
