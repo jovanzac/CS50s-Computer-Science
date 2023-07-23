@@ -6,3 +6,4 @@
 .ssh
 .bash_history
 .sqlite_history
+.gitignore
