@@ -11,8 +11,6 @@ def apology(message, code=400):
     def escape(s):
         """
         Escape special characters.
-
-        https://github.com/jacebrowning/memegen#special-characters
         """
         for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
                          ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
@@ -39,21 +37,31 @@ def lookup(symbol):
     """Look up quote for symbol."""
 
     # Contact API
+    sym = urllib.parse.quote_plus(symbol)
     try:
         api_key = os.environ.get("API_KEY")
-        url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
-        response = requests.get(url)
-        response.raise_for_status()
+        print(api_key)
+        url_real_time = f"https://api.twelvedata.com/price?symbol={sym}&apikey={api_key}"
+        price = requests.get(url_real_time)
+        price.raise_for_status()
+        url_quote = f"https://api.twelvedata.com/quote?symbol={sym}&apikey={api_key}"
+        quote = requests.get(url_quote)
+        print(f"url_quote: {quote}")
     except requests.RequestException:
+        print("$"*30)
+        print("Exception")
         return None
 
     # Parse response
     try:
-        quote = response.json()
+        price = price.json()
+        quote = quote.json()
+        print(f"quote: {quote}")
+        print(f"price: {price}")
         return {
-            "name": quote["companyName"],
-            "price": float(quote["latestPrice"]),
-            "symbol": quote["symbol"]
+            "name": quote["name"],
+            "price": float(price["price"]),
+            "symbol": sym
         }
     except (KeyError, TypeError, ValueError):
         return None

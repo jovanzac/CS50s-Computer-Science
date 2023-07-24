@@ -1,5 +1,3 @@
-# api key & command: export API_KEY=pk_a86ea09676634dd88ed73031a961b6ca
-
 import os
 
 from cs50 import SQL
@@ -13,8 +11,6 @@ from helpers import apology, login_required, lookup, usd
 
 # Configure application
 app = Flask(__name__)
-
-# app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -40,10 +36,6 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
-
-# Make sure API key is set
-# if not os.environ.get("API_KEY"):
-#     raise RuntimeError("API_KEY not set")
 
 
 @app.route("/")
@@ -265,7 +257,7 @@ def sell():
             return apology("Invalid number of shares chosen", 400)
 
         if shares * -1 > session["stock"][symbol]:
-            return apology("You are attempting to sell more shares than you won", 400)
+            return apology("You are attempting to sell more shares than you own", 400)
 
         if not symbol:
             return apology("The symbol field must not be left empty", 400)
