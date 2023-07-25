@@ -93,7 +93,7 @@ def buy():
         # Update the table, holdings, in the database and the session
         if symbol in session["stock"]:
             session["stock"][symbol] += shares
-            db.execute("UPDATE TABLE holdings SET Shares=? WHERE user_id=? AND Symbol=?",
+            db.execute("UPDATE holdings SET Shares=? WHERE user_id=? AND Symbol=?",
                        session["stock"][symbol], session["user_id"], symbol)
 
         else:

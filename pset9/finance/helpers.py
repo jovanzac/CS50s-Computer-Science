@@ -40,30 +40,23 @@ def lookup(symbol):
     sym = urllib.parse.quote_plus(symbol)
     try:
         api_key = os.environ.get("API_KEY")
-        print(api_key)
-        url_real_time = f"https://api.twelvedata.com/price?symbol={sym}&apikey={api_key}"
+        url_real_time = f"https://fmpcloud.io/api/v3/quote/AAPL?apikey={api_key}"
         price = requests.get(url_real_time)
         price.raise_for_status()
-        url_quote = f"https://api.twelvedata.com/quote?symbol={sym}&apikey={api_key}"
-        quote = requests.get(url_quote)
-        print(f"url_quote: {quote}")
     except requests.RequestException:
-        print("$"*30)
-        print("Exception")
         return None
 
     # Parse response
     try:
         price = price.json()
-        quote = quote.json()
-        print(f"quote: {quote}")
-        print(f"price: {price}")
+        print(f"price: {price[0]['price']}")
+        print(f"name: {price[0]['name']}")
         return {
-            "name": quote["name"],
-            "price": float(price["price"]),
+            "name": price[0]["name"],
+            "price": float(price[0]["price"]),
             "symbol": sym
         }
-    except (KeyError, TypeError, ValueError):
+    except (KeyError, TypeError, ValueError) :
         return None
 
 
